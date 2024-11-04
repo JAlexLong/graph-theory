@@ -31,6 +31,7 @@ class Graph:
             raise IndexError
         if to_node < 0 or to_node >= self.num_nodes:
             raise IndexError
+
         self.nodes[from_node].add_edge(to_node, weight)
         if self.undirected:
             self.nodes[to_node].add_edge(from_node, weight)
@@ -40,6 +41,7 @@ class Graph:
             raise IndexError
         if to_node < 0 or to_node >= self.num_nodes:
             raise IndexError
+
         self.nodes[from_node].remove_edge(to_node)
         if self.undirected:
             self.nodes[to_node.remove_edge(from_node)]
@@ -51,9 +53,9 @@ class Graph:
         return new_node
 
     def make_copy(self):
-        copy_graph: Graph = Graph(self.num_nodes, undirected=self.undirected)
+        copy: Graph = Graph(self.num_nodes, undirected=self.undirected)
         for node in self.nodes:
-            copy_graph.nodes[node.index].label = node.label
+            copy.nodes[node.index].label = node.label
             for edge in node.edges.values():
-                copy_graph.insert_edge(edge.from_node, edge.to_node, edge.weight)
-        return copy_graph
+                copy.insert_edge(edge.from_node, edge.to_node, edge.weight)
+        return copy
