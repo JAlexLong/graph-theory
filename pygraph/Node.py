@@ -34,3 +34,22 @@ class Node:
         for n in neighbors:
             result.append(self.edges[n])
         return result
+
+    def get_neighbors(self) -> set:
+        neighbors: set = set()
+        for edge in self.edges.values():
+            neighbors.add(edge.to_node)
+        return neighbors
+    
+    def get_in_neighbors(self) -> set:
+        neighbors: set = set()
+        for edge in self.edges.values():
+            neighbors.add(edge.to_node)
+        return neighbors
+    
+    def get_out_neighbors(self, target: int) -> set:
+        neighbors: set = set()
+        for node in self.nodes:
+            if target in node.edges:
+                neighbors.add(node.index)
+        return neighbors
